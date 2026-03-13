@@ -5,7 +5,6 @@
 [![Rust CI](https://github.com/guilyx/muxai/actions/workflows/rust-ci.yml/badge.svg)](https://github.com/guilyx/muxai/actions/workflows/rust-ci.yml)
 [![TypeScript CI](https://github.com/guilyx/muxai/actions/workflows/typescript-ci.yml/badge.svg)](https://github.com/guilyx/muxai/actions/workflows/typescript-ci.yml)
 [![Repo Quality](https://github.com/guilyx/muxai/actions/workflows/repo-quality.yml/badge.svg)](https://github.com/guilyx/muxai/actions/workflows/repo-quality.yml)
-[![Go Release](https://github.com/guilyx/muxai/actions/workflows/go-release.yml/badge.svg)](https://github.com/guilyx/muxai/actions/workflows/go-release.yml)
 ![Go Coverage Gate](https://img.shields.io/badge/go_coverage-%3E%3D70%25-brightgreen)
 
 Muxai is a suite of SDKs that lets developers use AI agent CLIs programmatically through a single, consistent client architecture.

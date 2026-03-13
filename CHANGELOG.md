@@ -17,3 +17,8 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - Added repository best-practice dotfiles (`.editorconfig`, `.gitattributes`, `.markdownlint.json`, `.prettierignore`).
 - Added `.pre-commit-config.yaml` and wired pre-commit execution into repository quality CI.
 - Added root `.env.example` and documented environment-based provider/local gateway configuration.
+
+### Changed
+
+- Simplified repository quality CI to run pre-commit hooks as the single CI quality gate.
+- Removed the `Go Release` badge from README to avoid 404 badge checks before workflow exists on default branch.
