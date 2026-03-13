@@ -130,6 +130,9 @@ func main() {
 - Per-language CI is path-filtered and only runs when related folders change.
 - Go CI enforces `gofmt`, `go vet`, race-safe tests, and a `>=70%` coverage gate.
 - Go release runs on `go/v*` tags and publishes GitHub release artifacts.
+- Python release runs on `python/v*` tags and publishes to PyPI + GitHub release artifacts.
+- Rust release runs on `rust/v*` tags and publishes to crates.io + GitHub release artifacts.
+- TypeScript release runs on `typescript/v*` tags and publishes to npm + GitHub release artifacts.
 - Repository quality checks enforce markdown hygiene and changelog presence.
 
 ## Local Developer Quality Baseline
