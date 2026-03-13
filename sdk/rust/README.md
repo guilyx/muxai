@@ -4,7 +4,7 @@ Rust SDK for muxai.
 
 ## Status
 
-Scaffolded in Phase 1 with CI and crate metadata. The Rust crate will mirror the cross-language SDK contract:
+Implemented with a typed client/provider contract mirroring the Go SDK foundation:
 
 - `Client` abstraction for provider routing.
 - Sync and async APIs.
@@ -21,3 +21,32 @@ Scaffolded in Phase 1 with CI and crate metadata. The Rust crate will mirror the
 - Cursor
 - Claude
 - Vibe
+
+## Quick Start
+
+```rust
+use std::sync::Arc;
+
+use muxai::{CliProvider, Client, ClientConfig, Message, ProviderName, Request, Role};
+
+let provider = Arc::new(CliProvider::cursor());
+let client = Client::new(
+    vec![provider],
+    ClientConfig {
+        default_provider: ProviderName::Cursor,
+        ..Default::default()
+    },
+)?;
+
+let response = client.run(
+    None,
+    Request {
+        messages: vec![Message {
+            role: Role::User,
+            content: "Hello".to_string(),
+        }],
+        system_prompt: None,
+    },
+)?;
+println!("{}", response.content);
+```

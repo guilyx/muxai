@@ -2,7 +2,10 @@ name: TypeScript CI
 
 on:
   pull_request:
-    branches: ["main", "develop"]
+    paths:
+      - "sdk/typescript/**"
+  push:
+    branches: ["main"]
     paths:
       - "sdk/typescript/**"
 

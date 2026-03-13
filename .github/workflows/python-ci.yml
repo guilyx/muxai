@@ -26,8 +26,17 @@ jobs:
       - name: Set up Python
         run: uv python install 3.12
 
-      - name: Install package
-        run: uv venv && uv pip install --python .venv/bin/python -e .
+      - name: Sync project dependencies
+        run: uv sync --all-extras
 
       - name: Basic compile check
         run: uv run python -m compileall src
+
+      - name: Ruff lint
+        run: uv run ruff check src tests
+
+      - name: Ruff format check
+        run: uv run ruff format --check src tests
+
+      - name: Run unit tests
+        run: uv run python -m unittest discover -s tests -p "test_*.py"
