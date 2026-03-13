@@ -19,6 +19,7 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - Added root `.env.example` and documented environment-based provider/local gateway configuration.
 - Added Python core parity foundations: enriched SDK models, default client entrypoint, and async event-stream client API.
 - Hardened Python provider runtime with timeout safeguards and typed process-error classification.
+- Added cross-language semantic contract documentation and an SDK parity matrix with production acceptance criteria.
 
 ### Changed
 
