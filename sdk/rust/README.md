@@ -10,6 +10,7 @@ Implemented with a typed client/provider contract mirroring the Go SDK foundatio
 - Sync and async APIs.
 - Unified request/response models.
 - Strongly typed error taxonomy.
+- Hardened CLI provider runtime (prompt stdin, timeout handling, non-zero exit classification).
 
 ## Tooling
 

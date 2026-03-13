@@ -13,3 +13,5 @@
 - Refactored Rust SDK into modules (`client`, `types`, `errors`, `provider`) with explicit public exports.
 - Added parity-oriented Rust model types (`FinishReason`, `Usage`, `ToolDefinition`, `ToolCall`, `Event`).
 - Added `Client::run_default(...)` and `Client::run_events(...)` to align core execution semantics.
+- Hardened CLI provider execution: request prompt piped via stdin, timeout enforcement, and typed non-zero exit classification.
+- Added Rust provider runtime tests for prompt pass-through, auth classification, and timeout behavior.

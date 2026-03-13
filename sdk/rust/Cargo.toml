@@ -8,3 +8,6 @@ description = "Rust SDK for muxai"
 [lib]
 name = "muxai"
 path = "src/lib.rs"
+
+[dependencies]
+wait-timeout = "0.2.1"
