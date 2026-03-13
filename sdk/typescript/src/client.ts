@@ -80,7 +80,7 @@ export class Client {
     });
   }
 
-  private async #runWithTimeout(
+  async #runWithTimeout(
     promise: Promise<Response>,
     provider: ProviderName,
   ): Promise<Response> {

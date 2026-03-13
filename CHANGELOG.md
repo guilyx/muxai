@@ -23,3 +23,7 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 - Simplified repository quality CI to run pre-commit hooks as the single CI quality gate.
 - Removed the `Go Release` badge from README to avoid 404 badge checks before workflow exists on default branch.
+
+### Fixed
+
+- Fixed TypeScript SDK build error by removing an invalid accessibility modifier on a private-identifier method.
