@@ -12,6 +12,8 @@
 - Added TypeScript tests for client routing and configuration error behavior.
 - Added parity-oriented TypeScript model types (`FinishReason`, `Usage`, `ToolDefinition`, `ToolCall`, `Event`).
 - Added `Client.runDefault(...)` and `Client.runEvents(...)` for default execution and event lifecycle support.
+- Hardened CLI provider runtime with timeout enforcement, inherited env merge, and typed process error classification.
+- Added provider-focused runtime tests for success, auth error classification, and timeout behavior.
 
 ### Fixed
 
