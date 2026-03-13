@@ -18,8 +18,19 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - Added `.pre-commit-config.yaml` and wired pre-commit execution into repository quality CI.
 - Added root `.env.example` and documented environment-based provider/local gateway configuration.
 - Added open-source governance and contribution assets (`LICENSE`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, issue templates, and PR template).
+- Added tag-driven release workflows for Python (`python/v*`), Rust (`rust/v*`), and TypeScript (`typescript/v*`) publish automation.
+- Implemented foundational Python, Rust, and TypeScript SDK cores with provider abstraction, sync/async clients, and tests.
+- Added Rust core parity foundations: modular crate architecture, enriched SDK model types, and event-capable client APIs.
+- Added TypeScript core parity foundations: enriched SDK models, default client execution, and event lifecycle APIs.
+- Implemented foundational Python, Rust, and TypeScript SDK cores with provider abstraction, sync/async clients, and tests.
+- Added Python core parity foundations: enriched SDK models, default client entrypoint, and async event-stream client API.
+- Added cross-language semantic contract documentation and an SDK parity matrix with production acceptance criteria.
 
 ### Changed
 
 - Simplified repository quality CI to run pre-commit hooks as the single CI quality gate.
 - Removed the `Go Release` badge from README to avoid 404 badge checks before workflow exists on default branch.
+
+### Fixed
+
+- Fixed TypeScript SDK build error by removing an invalid accessibility modifier on a private-identifier method.
