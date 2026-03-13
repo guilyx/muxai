@@ -86,36 +86,36 @@ sdk/
 package main
 
 import (
-	"context"
-	"fmt"
+    "context"
+    "fmt"
 
-	"github.com/guilyx/muxai/sdk/go/pkg/muxai"
-	"github.com/guilyx/muxai/sdk/go/pkg/muxai/providers/claude"
-	"github.com/guilyx/muxai/sdk/go/pkg/muxai/providers/cursor"
-	"github.com/guilyx/muxai/sdk/go/pkg/muxai/providers/vibe"
+    "github.com/guilyx/muxai/sdk/go/pkg/muxai"
+    "github.com/guilyx/muxai/sdk/go/pkg/muxai/providers/claude"
+    "github.com/guilyx/muxai/sdk/go/pkg/muxai/providers/cursor"
+    "github.com/guilyx/muxai/sdk/go/pkg/muxai/providers/vibe"
 )
 
 func main() {
-	client, err := muxai.NewClient(
-		muxai.WithProvider(cursor.NewProvider()),
-		muxai.WithProvider(claude.NewProvider()),
-		muxai.WithProvider(vibe.NewProvider()),
-		muxai.WithDefaultProvider(muxai.ProviderCursor),
-	)
-	if err != nil {
-		panic(err)
-	}
+    client, err := muxai.NewClient(
+        muxai.WithProvider(cursor.NewProvider()),
+        muxai.WithProvider(claude.NewProvider()),
+        muxai.WithProvider(vibe.NewProvider()),
+        muxai.WithDefaultProvider(muxai.ProviderCursor),
+    )
+    if err != nil {
+        panic(err)
+    }
 
-	resp, err := client.RunDefault(context.Background(), muxai.Request{
-		Messages: []muxai.Message{
-			{Role: muxai.RoleUser, Content: "Summarize this repository in 3 bullets."},
-		},
-	})
-	if err != nil {
-		panic(err)
-	}
+    resp, err := client.RunDefault(context.Background(), muxai.Request{
+        Messages: []muxai.Message{
+            {Role: muxai.RoleUser, Content: "Summarize this repository in 3 bullets."},
+        },
+    })
+    if err != nil {
+        panic(err)
+    }
 
-	fmt.Println(resp.Content)
+    fmt.Println(resp.Content)
 }
 ```
 

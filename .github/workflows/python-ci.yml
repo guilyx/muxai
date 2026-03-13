@@ -2,7 +2,10 @@ name: Python CI
 
 on:
   pull_request:
-    branches: ["main", "develop"]
+    paths:
+      - "sdk/python/**"
+  push:
+    branches: ["main"]
     paths:
       - "sdk/python/**"
 
@@ -24,7 +27,7 @@ jobs:
         run: uv python install 3.12
 
       - name: Install package
-        run: uv pip install -e .
+        run: uv venv && uv pip install --python .venv/bin/python -e .
 
       - name: Basic compile check
         run: uv run python -m compileall src

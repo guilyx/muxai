@@ -8,6 +8,7 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 ## [Unreleased]
 
 ### Added
+
 - Initialized monorepo structure for Go, Python, Rust, and TypeScript SDKs.
 - Added root documentation (`README`, architecture and providers docs) and provider expansion references.
 - Added path-filtered GitHub Actions workflows for Go, Python, Rust, TypeScript, and repository quality checks.

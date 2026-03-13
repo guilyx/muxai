@@ -20,24 +20,24 @@ go get github.com/guilyx/muxai/sdk/go
 
 ```go
 client, err := muxai.NewClient(
-	muxai.WithProvider(cursor.NewProvider()),
-	muxai.WithProvider(claude.NewProvider()),
-	muxai.WithProvider(vibe.NewProvider()),
-	muxai.WithDefaultProvider(muxai.ProviderCursor),
-	muxai.WithTimeout(30*time.Second),
-	muxai.WithRetries(2, 100*time.Millisecond, 2*time.Second),
+    muxai.WithProvider(cursor.NewProvider()),
+    muxai.WithProvider(claude.NewProvider()),
+    muxai.WithProvider(vibe.NewProvider()),
+    muxai.WithDefaultProvider(muxai.ProviderCursor),
+    muxai.WithTimeout(30*time.Second),
+    muxai.WithRetries(2, 100*time.Millisecond, 2*time.Second),
 )
 if err != nil {
-	panic(err)
+    panic(err)
 }
 
 resp, err := client.Run(context.Background(), muxai.ProviderCursor, muxai.Request{
-	Messages: []muxai.Message{
-		{Role: muxai.RoleUser, Content: "Review this code for bugs."},
-	},
+    Messages: []muxai.Message{
+        {Role: muxai.RoleUser, Content: "Review this code for bugs."},
+    },
 })
 if err != nil {
-	panic(err)
+    panic(err)
 }
 fmt.Println(resp.Content)
 ```
@@ -47,14 +47,14 @@ fmt.Println(resp.Content)
 ```go
 events, errs := client.RunAsync(context.Background(), muxai.ProviderClaude, req)
 for ev := range events {
-	if ev.Type == muxai.EventTypeDone && ev.Response != nil {
-		fmt.Println(ev.Response.Content)
-	}
+    if ev.Type == muxai.EventTypeDone && ev.Response != nil {
+        fmt.Println(ev.Response.Content)
+    }
 }
 for err := range errs {
-	if err != nil {
-		panic(err)
-	}
+    if err != nil {
+        panic(err)
+    }
 }
 ```
 
@@ -75,6 +75,6 @@ Use helpers:
 
 ```go
 if muxai.IsCode(err, muxai.ErrorCodeRateLimit) {
-	// handle backoff strategy
+    // handle backoff strategy
 }
 ```

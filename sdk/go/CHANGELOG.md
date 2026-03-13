@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+
 - Implemented `muxai` Go client with provider registry, default provider selection, retry strategy, and timeout handling.
 - Added unified Go SDK models (`Request`, `Response`, `Message`, `Event`, `Usage`, and enums).
 - Added provider abstraction interface with sync (`Run`) and async (`RunAsync`) execution.
