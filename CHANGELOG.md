@@ -17,6 +17,8 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - Added repository best-practice dotfiles (`.editorconfig`, `.gitattributes`, `.markdownlint.json`, `.prettierignore`).
 - Added `.pre-commit-config.yaml` and wired pre-commit execution into repository quality CI.
 - Added root `.env.example` and documented environment-based provider/local gateway configuration.
+- Added TypeScript core parity foundations: enriched SDK models, default client execution, and event lifecycle APIs.
+- Implemented foundational Python, Rust, and TypeScript SDK cores with provider abstraction, sync/async clients, and tests.
 - Added Python core parity foundations: enriched SDK models, default client entrypoint, and async event-stream client API.
 - Added cross-language semantic contract documentation and an SDK parity matrix with production acceptance criteria.
 
@@ -24,3 +26,7 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 - Simplified repository quality CI to run pre-commit hooks as the single CI quality gate.
 - Removed the `Go Release` badge from README to avoid 404 badge checks before workflow exists on default branch.
+
+### Fixed
+
+- Fixed TypeScript SDK build error by removing an invalid accessibility modifier on a private-identifier method.
