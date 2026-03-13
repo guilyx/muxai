@@ -17,6 +17,7 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - Added repository best-practice dotfiles (`.editorconfig`, `.gitattributes`, `.markdownlint.json`, `.prettierignore`).
 - Added `.pre-commit-config.yaml` and wired pre-commit execution into repository quality CI.
 - Added root `.env.example` and documented environment-based provider/local gateway configuration.
+- Added Python core parity foundations: enriched SDK models, default client entrypoint, and async event-stream client API.
 - Added cross-language semantic contract documentation and an SDK parity matrix with production acceptance criteria.
 
 ### Changed
