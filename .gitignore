@@ -1,0 +1,28 @@
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Go
+*.test
+coverage.out
+
+# Rust
+target/
+
+# Node
+node_modules/
+dist/
+coverage/
+
+# IDE/editor
+.idea/
+.vscode/
+
+# Environment configuration
+.env
+.env.*
+!.env.example

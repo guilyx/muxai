@@ -1,0 +1,50 @@
+name: Go CI
+
+on:
+  pull_request:
+    branches: ["main", "develop"]
+    paths:
+      - "sdk/go/**"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sdk/go
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: sdk/go/go.mod
+
+      - name: Check formatting
+        run: |
+          UNFORMATTED="$(gofmt -l ./pkg)"
+          if [ -n "$UNFORMATTED" ]; then
+            echo "Unformatted files:"
+            echo "$UNFORMATTED"
+            exit 1
+          fi
+
+      - name: Vet
+        run: go vet ./...
+
+      - name: Test with race and coverage
+        run: go test ./... -race -coverprofile=coverage.out
+
+      - name: Enforce coverage threshold
+        run: |
+          TOTAL="$(go tool cover -func=coverage.out | awk '/^total:/ {print $3}' | tr -d '%')"
+          echo "Total coverage: ${TOTAL}%"
+          awk -v total="$TOTAL" 'BEGIN { if (total < 70.0) { exit 1 } }'
+
+      - name: Upload coverage artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: go-coverage
+          path: sdk/go/coverage.out

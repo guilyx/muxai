@@ -1,0 +1,3 @@
+//! muxai Rust SDK
+
+pub const VERSION: &str = "0.0.0";

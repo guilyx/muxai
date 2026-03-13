@@ -1,0 +1,65 @@
+name: Repo Quality
+
+on:
+  pull_request:
+    paths:
+      - ".editorconfig"
+      - ".gitattributes"
+      - ".markdownlint.json"
+      - ".pre-commit-config.yaml"
+      - "README.md"
+      - "CHANGELOG.md"
+      - "docs/**"
+      - "sdk/**/README.md"
+      - "sdk/**/CHANGELOG.md"
+      - ".github/workflows/**"
+  push:
+    branches: ["main"]
+    paths:
+      - ".editorconfig"
+      - ".gitattributes"
+      - ".markdownlint.json"
+      - ".pre-commit-config.yaml"
+      - "README.md"
+      - "CHANGELOG.md"
+      - "docs/**"
+      - "sdk/**/README.md"
+      - "sdk/**/CHANGELOG.md"
+      - ".github/workflows/**"
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate changelog files exist
+        run: |
+          test -f CHANGELOG.md
+          test -f sdk/go/CHANGELOG.md
+          test -f sdk/python/CHANGELOG.md
+          test -f sdk/rust/CHANGELOG.md
+          test -f sdk/typescript/CHANGELOG.md
+
+      - name: Validate changelog has Unreleased section
+        run: |
+          grep -q '## \[Unreleased\]' CHANGELOG.md
+          grep -q '## \[Unreleased\]' sdk/go/CHANGELOG.md
+          grep -q '## \[Unreleased\]' sdk/python/CHANGELOG.md
+          grep -q '## \[Unreleased\]' sdk/rust/CHANGELOG.md
+          grep -q '## \[Unreleased\]' sdk/typescript/CHANGELOG.md
+
+      - name: Markdown lint
+        uses: DavidAnson/markdownlint-cli2-action@v18
+        with:
+          globs: |
+            **/*.md
+
+      - name: Link check
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --no-progress --verbose README.md docs/**/*.md sdk/**/README.md
+
+      - name: Run pre-commit hooks
+        uses: pre-commit/action@v3.0.1

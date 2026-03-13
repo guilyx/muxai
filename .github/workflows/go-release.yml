@@ -1,0 +1,41 @@
+name: Go Release
+
+on:
+  push:
+    tags:
+      - "go/v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: sdk/go/go.mod
+
+      - name: Run tests
+        working-directory: sdk/go
+        run: go test ./... -race
+
+      - name: Build release artifacts
+        run: |
+          VERSION="${GITHUB_REF_NAME#go/v}"
+          mkdir -p dist
+          tar -czf "dist/muxai-go-${VERSION}.tar.gz" sdk/go
+          sha256sum dist/* > dist/checksums.txt
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Go SDK ${{ github.ref_name }}
+          files: |
+            dist/muxai-go-*.tar.gz
+            dist/checksums.txt
