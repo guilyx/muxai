@@ -10,6 +10,7 @@ Implemented with a shared client/provider contract aligned with Go and Python:
 - Sync/async-friendly execution APIs.
 - Shared request/response and event models.
 - Typed provider error categories.
+- Provider runtime safeguards (timeout handling, env merge, non-zero exit classification).
 
 ## Tooling
 

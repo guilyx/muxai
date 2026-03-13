@@ -18,6 +18,7 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - Added `.pre-commit-config.yaml` and wired pre-commit execution into repository quality CI.
 - Added root `.env.example` and documented environment-based provider/local gateway configuration.
 - Added TypeScript core parity foundations: enriched SDK models, default client execution, and event lifecycle APIs.
+- Hardened TypeScript provider runtime with timeout safeguards and typed process-error classification.
 - Implemented foundational Python, Rust, and TypeScript SDK cores with provider abstraction, sync/async clients, and tests.
 
 ### Changed
