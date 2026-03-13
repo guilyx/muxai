@@ -11,6 +11,7 @@ Implemented with the same core contract as Go:
 - Async event streaming via `Client.run_events(...)`.
 - Unified request/response models.
 - Structured error taxonomy.
+- Provider runtime guards (timeouts, non-zero exit classification, async process cleanup).
 
 ## Tooling
 
