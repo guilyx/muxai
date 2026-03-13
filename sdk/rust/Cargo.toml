@@ -1,6 +1,6 @@
 [package]
-name = "muxai"
-version = "0.0.0"
+name = "muxai-rust"
+version = "0.1.0"
 edition = "2021"
 license = "MIT"
 description = "Rust SDK for muxai"
