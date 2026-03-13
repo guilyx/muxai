@@ -2,7 +2,10 @@ name: Rust CI
 
 on:
   pull_request:
-    branches: ["main", "develop"]
+    paths:
+      - "sdk/rust/**"
+  push:
+    branches: ["main"]
     paths:
       - "sdk/rust/**"
 

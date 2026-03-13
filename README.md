@@ -22,7 +22,7 @@ Muxai is a suite of SDKs that lets developers use AI agent CLIs programmatically
 Phase 1 is Go-first:
 
 - Go SDK has core client architecture, provider adapters, tests, and release workflow.
-- Python, Rust, and TypeScript SDKs are scaffolded with CI and docs to ensure consistent expansion.
+- Python, Rust, and TypeScript now include implemented SDK cores with matching client/provider contracts and tests.
 
 ## Supported Providers (v0)
 

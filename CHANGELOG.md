@@ -17,6 +17,7 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - Added repository best-practice dotfiles (`.editorconfig`, `.gitattributes`, `.markdownlint.json`, `.prettierignore`).
 - Added `.pre-commit-config.yaml` and wired pre-commit execution into repository quality CI.
 - Added root `.env.example` and documented environment-based provider/local gateway configuration.
+- Implemented foundational Python, Rust, and TypeScript SDK cores with provider abstraction, sync/async clients, and tests.
 
 ### Changed
 

@@ -4,7 +4,7 @@ Python SDK for muxai.
 
 ## Status
 
-Scaffolded in Phase 1 with CI and packaging metadata. The Python API will follow the same contract as Go:
+Implemented with the same core contract as Go:
 
 - `Client` with provider routing.
 - Sync and async APIs.
@@ -16,6 +16,21 @@ Scaffolded in Phase 1 with CI and packaging metadata. The Python API will follow
 - Packaging: `pyproject.toml`
 - Environment and dependency management: `uv`
 - CI: path-filtered GitHub Actions workflow
+
+## Quick Start
+
+```python
+from muxai import Client, ClientConfig, Message, ProviderName, Request, Role
+from muxai.providers import ClaudeProvider, CursorProvider, VibeProvider
+
+client = Client(
+    providers=[CursorProvider(), ClaudeProvider(), VibeProvider()],
+    config=ClientConfig(default_provider=ProviderName.CURSOR),
+)
+
+response = client.run(Request(messages=[Message(role=Role.USER, content="Hello")]))
+print(response.content)
+```
 
 ## Planned Provider Adapters
 

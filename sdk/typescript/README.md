@@ -4,7 +4,7 @@ TypeScript SDK for muxai.
 
 ## Status
 
-Scaffolded in Phase 1 with package metadata and CI. The TypeScript package will align with the shared muxai SDK contract:
+Implemented with a shared client/provider contract aligned with Go and Python:
 
 - Unified `Client` API.
 - Sync/async-friendly execution APIs.
@@ -22,3 +22,20 @@ Scaffolded in Phase 1 with package metadata and CI. The TypeScript package will 
 - Cursor
 - Claude
 - Vibe
+
+## Quick Start
+
+```ts
+import { Client, createClaudeProvider, createCursorProvider, createVibeProvider } from "@guilyx/muxai-typescript";
+
+const client = new Client(
+  [createCursorProvider(), createClaudeProvider(), createVibeProvider()],
+  { defaultProvider: "cursor" },
+);
+
+const response = await client.run({
+  messages: [{ role: "user", content: "Hello" }],
+});
+
+console.log(response.content);
+```
