@@ -1,0 +1,10 @@
+[package]
+name = "muxai"
+version = "0.0.0"
+edition = "2021"
+license = "MIT"
+description = "Rust SDK for muxai"
+
+[lib]
+name = "muxai"
+path = "src/lib.rs"

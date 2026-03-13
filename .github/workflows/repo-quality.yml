@@ -1,0 +1,40 @@
+name: Repo Quality
+
+on:
+  pull_request:
+    paths:
+      - ".editorconfig"
+      - ".gitattributes"
+      - ".markdownlint.json"
+      - ".pre-commit-config.yaml"
+      - "README.md"
+      - "CHANGELOG.md"
+      - "docs/**"
+      - "sdk/**/README.md"
+      - "sdk/**/CHANGELOG.md"
+      - ".github/workflows/**"
+  push:
+    branches: ["main"]
+    paths:
+      - ".editorconfig"
+      - ".gitattributes"
+      - ".markdownlint.json"
+      - ".pre-commit-config.yaml"
+      - "README.md"
+      - "CHANGELOG.md"
+      - "docs/**"
+      - "sdk/**/README.md"
+      - "sdk/**/CHANGELOG.md"
+      - ".github/workflows/**"
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run pre-commit hooks
+        uses: pre-commit/action@v3.0.1
+        with:
+          extra_args: --all-files

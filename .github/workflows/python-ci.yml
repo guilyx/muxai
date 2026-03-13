@@ -1,0 +1,33 @@
+name: Python CI
+
+on:
+  pull_request:
+    paths:
+      - "sdk/python/**"
+  push:
+    branches: ["main"]
+    paths:
+      - "sdk/python/**"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sdk/python
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Install package
+        run: uv venv && uv pip install --python .venv/bin/python -e .
+
+      - name: Basic compile check
+        run: uv run python -m compileall src
