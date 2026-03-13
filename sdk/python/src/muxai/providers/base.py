@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import contextlib
 import os
 import subprocess
 from dataclasses import dataclass, field
@@ -15,6 +16,7 @@ class CLIProvider(Provider):
     command: str
     args: list[str]
     env: dict[str, str] = field(default_factory=dict)
+    timeout_seconds: float = 30.0
 
     def _prompt(self, request: Request) -> str:
         lines: list[str] = []
@@ -40,7 +42,16 @@ class CLIProvider(Provider):
                 capture_output=True,
                 check=False,
                 env={**os.environ, **self.env} if self.env else None,
+                timeout=self.timeout_seconds,
             )
+        except subprocess.TimeoutExpired as exc:
+            raise MuxaiError(
+                code=ErrorCode.TIMEOUT,
+                message=f"provider command timed out after {self.timeout_seconds}s",
+                provider=self.name,
+                operation="Provider.run",
+                temporary=True,
+            ) from exc
         except OSError as exc:
             raise MuxaiError(
                 code=ErrorCode.PROVIDER_EXEC,
@@ -52,13 +63,7 @@ class CLIProvider(Provider):
 
         if completed.returncode != 0:
             stderr = completed.stderr.strip() or "provider command failed"
-            raise MuxaiError(
-                code=ErrorCode.PROVIDER_EXEC,
-                message=stderr,
-                provider=self.name,
-                operation="Provider.run",
-                temporary=True,
-            )
+            raise self._classify_process_error(stderr, "Provider.run")
 
         raw = completed.stdout
         return Response(provider=self.name, content=raw.strip(), raw=raw)
@@ -72,17 +77,49 @@ class CLIProvider(Provider):
             stderr=asyncio.subprocess.PIPE,
             env={**os.environ, **self.env} if self.env else None,
         )
-        stdout, stderr = await process.communicate(self._prompt(request).encode())
-
-        if process.returncode != 0:
-            message = stderr.decode().strip() or "provider command failed"
+        try:
+            stdout, stderr = await asyncio.wait_for(
+                process.communicate(self._prompt(request).encode()),
+                timeout=self.timeout_seconds,
+            )
+        except asyncio.TimeoutError as exc:
+            process.kill()
+            with contextlib.suppress(Exception):
+                await process.communicate()
             raise MuxaiError(
-                code=ErrorCode.PROVIDER_EXEC,
-                message=message,
+                code=ErrorCode.TIMEOUT,
+                message=f"provider command timed out after {self.timeout_seconds}s",
                 provider=self.name,
                 operation="Provider.run_async",
                 temporary=True,
-            )
+            ) from exc
+
+        if process.returncode != 0:
+            message = stderr.decode().strip() or "provider command failed"
+            raise self._classify_process_error(message, "Provider.run_async")
 
         raw = stdout.decode()
         return Response(provider=self.name, content=raw.strip(), raw=raw)
+
+    def _classify_process_error(self, message: str, operation: str) -> MuxaiError:
+        lowered = message.lower()
+        if "unauthorized" in lowered or "auth" in lowered:
+            code = ErrorCode.AUTH
+            temporary = False
+        elif "rate limit" in lowered or "too many requests" in lowered:
+            code = ErrorCode.RATE_LIMIT
+            temporary = True
+        elif "timeout" in lowered:
+            code = ErrorCode.TIMEOUT
+            temporary = True
+        else:
+            code = ErrorCode.PROVIDER_EXEC
+            temporary = True
+
+        return MuxaiError(
+            code=code,
+            message=message,
+            provider=self.name,
+            operation=operation,
+            temporary=temporary,
+        )

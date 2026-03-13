@@ -12,3 +12,5 @@
 - Added Python unit tests covering sync/async client behavior and provider routing failures.
 - Added parity-oriented model types (`FinishReason`, `Usage`, `ToolDefinition`, `ToolCall`, `Event`) and event lifecycle semantics.
 - Added `Client.run_default(...)` and `Client.run_events(...)` with timeout and typed error propagation behavior.
+- Hardened provider runtime with sync/async timeout guards and error-classification mapping.
+- Added provider-focused runtime tests for success, auth error classification, and async timeout behavior.
