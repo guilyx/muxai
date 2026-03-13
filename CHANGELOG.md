@@ -20,6 +20,10 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - Implemented foundational Python, Rust, and TypeScript SDK cores with provider abstraction, sync/async clients, and tests.
 - Added Rust core parity foundations: modular crate architecture, enriched SDK model types, and event-capable client APIs.
 - Hardened Rust provider runtime with stdin prompt handling, timeout controls, and typed process-error classification.
+- Added TypeScript core parity foundations: enriched SDK models, default client execution, and event lifecycle APIs.
+- Implemented foundational Python, Rust, and TypeScript SDK cores with provider abstraction, sync/async clients, and tests.
+- Added Python core parity foundations: enriched SDK models, default client entrypoint, and async event-stream client API.
+- Added cross-language semantic contract documentation and an SDK parity matrix with production acceptance criteria.
 
 ### Changed
 
