@@ -152,6 +152,13 @@ pre-commit install
 pre-commit run --all-files
 ```
 
+## Community and Governance
+
+- Contribution guide: [`CONTRIBUTING.md`](CONTRIBUTING.md)
+- Code of conduct: [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md)
+- Security policy: [`SECURITY.md`](SECURITY.md)
+- License: [`LICENSE`](LICENSE)
+
 ## Changelogs
 
 - Root: [`CHANGELOG.md`](CHANGELOG.md)
