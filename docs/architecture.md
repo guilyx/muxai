@@ -24,6 +24,26 @@ Each SDK is expected to expose:
 - Shared request/response models.
 - Provider-agnostic error codes.
 
+## Shared Semantic Contract
+
+The contract is shared semantically and adapted ergonomically per language.
+
+- Request semantics:
+  - `system_prompt`, `messages`, `tools`, `metadata`, `max_turns`
+- Response semantics:
+  - `content`, `raw`, `finish_reason`, `tool_calls`, `usage`, `duration`
+- Event semantics:
+  - lifecycle events `started`, `delta`, `done`, `error`
+- Error semantics:
+  - `config_error`, `auth_error`, `rate_limit_error`, `transient_error`,
+    `provider_exec_error`, `provider_parse_error`, `timeout_error`, `canceled_error`
+- Runtime semantics:
+  - deterministic retry policy for retryable failures
+  - cancellation and timeout mapping to typed errors
+  - provider adapters behind a strict interface/protocol/trait
+
+For implementation-level parity criteria and status tracking, see `docs/parity-matrix.md`.
+
 ## Go Reference Layout
 
 The initial reference implementation lives in `sdk/go`:
