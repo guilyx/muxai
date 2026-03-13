@@ -1,0 +1,37 @@
+name: Feature request
+description: Suggest a feature or improvement for muxai
+title: "[feature] "
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - Core contract
+        - Go SDK
+        - Python SDK
+        - Rust SDK
+        - TypeScript SDK
+        - CI/CD
+        - Docs
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem statement
+      description: What user problem does this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe API shape/behavior and expected impact.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered

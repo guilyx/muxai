@@ -1,0 +1,42 @@
+name: Bug report
+description: Report a reproducible bug in muxai SDKs
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: sdk
+    attributes:
+      label: SDK
+      options:
+        - Go
+        - Python
+        - Rust
+        - TypeScript
+        - Docs/CI
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What is failing?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Provide clear steps and sample input.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs/errors
+      render: shell
